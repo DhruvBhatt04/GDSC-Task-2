@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Your Orders</h2>
+  <ul>
+    {% for order in orders %}
+      <li>
+        {{ order.description }} (Priority: {{ order.priority }})
+        <a href="{% url 'update_order' order.id %}">Edit</a>
+        <a href="{% url 'delete_order' order.id %}">Delete</a>
+      </li>
+    {% empty %}
+      <li>No orders found.</li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'add_order' %}">Add Order</a>
+  <a href="{% url 'search_orders' %}">Search Orders</a>
+</div>
+{% endblock %}

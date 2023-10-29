@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Search Orders</h2>
+  <form method="post">
+    {% csrf_token %}
+    <label for="priority">Priority:</label>
+    <input type="text" name="priority" id="priority">
+    <button type="submit">Search</button>
+  </form>
+  <ul>
+    {% for order in orders %}
+      <li>
+        {{ order.description }} (Priority: {{ order.priority }})
+      </li>
+    {% empty %}
+      <li>No orders found.</li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'order_list' %}">Back to Orders</a>
+</div>
+{% endblock %}
